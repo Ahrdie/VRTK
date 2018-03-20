@@ -2386,9 +2386,9 @@ The script also has a public boolean pressed state for the buttons to allow the 
   * `TouchpadPress` - The touchpad is pressed (to the point of hearing a click).
   * `ButtonOneTouch` - The button one is touched.
   * `ButtonOnePress` - The button one is pressed.
-  * `ButtonTwoTouch` - The button one is touched.
-  * `ButtonTwoPress` - The button one is pressed.
-  * `StartMenuPress` - The button one is pressed.
+  * `ButtonTwoTouch` - The button two is touched.
+  * `ButtonTwoPress` - The button two is pressed.
+  * `StartMenuPress` - The start menu is pressed.
  * `public bool triggerPressed` - This will be true if the trigger is squeezed about half way in. Default: `false`
  * `public bool triggerTouched` - This will be true if the trigger is squeezed a small amount. Default: `false`
  * `public bool triggerHairlinePressed` - This will be true if the trigger is squeezed a small amount more from any previous squeeze on the trigger. Default: `false`
@@ -6386,7 +6386,8 @@ Populates the object references by using the currently set SDKs.
   * Returns
    * `string[]` - An array of all the error descriptions. Returns an empty array if no errors are found.
 
-Checks the setup for errors and creates an array of error descriptions. The returned error descriptions handle the following cases for the current SDK infos:  * Its type doesn't exist anymore.  * It's a fallback SDK.  * It doesn't have its scripting define symbols added.  * It's missing its vendor SDK.Additionally the current SDK infos are checked whether they use multiple VR Devices.
+Checks the setup for errors and creates an array of error descriptions. The returned error descriptions handle the following cases for the current SDK infos: 
+ * Its type doesn't exist anymore.  * It's a fallback SDK.  * It doesn't have its scripting define symbols added.  * It's missing its vendor SDK.Additionally the current SDK infos are checked whether they use multiple VR Devices.
 
 ---
 
@@ -7155,14 +7156,17 @@ Adaptive Quality dynamically changes rendering settings to maintain VR framerate
 > **Only Compatible With Unity 5.4 and above**
 
 There are two goals:
- * Reduce the chances of dropping frames and reprojecting
+
+ * Reduce the chances of dropping frames and reprojecting
  * Increase quality when there are idle GPU cycles
 
 This script currently changes the following to reach these goals:
- * Rendering resolution and viewport size (aka Dynamic Resolution)
+
+ * Rendering resolution and viewport size (aka Dynamic Resolution)
 
 In the future it could be changed to also change the following:
- * MSAA level
+
+ * MSAA level
  * Fixed Foveated Rendering
  * Radial Density Masking
  * (Non-fixed) Foveated Rendering (once HMDs support eye tracking)
@@ -7172,7 +7176,8 @@ pass `1.0f / VRSettings.renderViewportScale` into the shader and scale all incom
 program. Do this by using `Material.SetFloat` to set the value in the script that configures the shader.
 
 In more detail:
- * In the `.shader` file: Add a new runtime-set property value `float _InverseOfRenderViewportScale` and add `vertexInput.texcoord *= _InverseOfRenderViewportScale` to the start of the vertex program
+
+ * In the `.shader` file: Add a new runtime-set property value `float _InverseOfRenderViewportScale` and add `vertexInput.texcoord *= _InverseOfRenderViewportScale` to the start of the vertex program
  * In the `.cs` file: Before using the material (eg. `Graphics.Blit`) add `material.SetFloat("_InverseOfRenderViewportScale", 1.0f / VRSettings.renderViewportScale)`
 
 ### Inspector Parameters
